@@ -24,7 +24,10 @@ import time
 
 
 def main():
-  myo.init()
+  ### enter the path to your own MyoSDK package and .dll file here. Download 
+  # with Nuget @ https://www.nuget.org/packages/MyoSDK/2.1.0 and insert .dll file within
+  # /bin folder if required.
+  myo.init(sdk_path="C:\\Users\\dicke\\packages\\MyoSDK.2.1.0")
   hub = myo.Hub()
   listener = myo.ApiDeviceListener()
 

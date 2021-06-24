@@ -46,7 +46,7 @@ class EmgRate(myo.DeviceListener):
     event.device.stream_emg(True)
 
   def on_emg(self, event):
-    t = time.clock()
+    t = time.perf_counter()
     if self.last_time is not None:
       self.times.append(t - self.last_time)
       if len(self.times) > self.n:
@@ -55,7 +55,10 @@ class EmgRate(myo.DeviceListener):
 
 
 def main():
-  myo.init()
+  ### enter the path to your own MyoSDK package and .dll file here. Download 
+  # with Nuget @ https://www.nuget.org/packages/MyoSDK/2.1.0 and insert .dll file within
+  # /bin folder if required.
+  myo.init(sdk_path="C:\\Users\\dicke\\packages\\MyoSDK.2.1.0")
   hub = myo.Hub()
   listener = EmgRate(n=50)
   while hub.run(listener.on_event, 500):

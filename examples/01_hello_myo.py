@@ -44,7 +44,11 @@ class Listener(myo.DeviceListener):
 
 
 if __name__ == '__main__':
-  myo.init()
+  ### enter the path to your own MyoSDK package and .dll file here. Download 
+  # with Nuget @ https://www.nuget.org/packages/MyoSDK/2.1.0 and insert .dll file within
+  # /bin folder if required.
+  ## https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-nuget-cli
+  myo.init(sdk_path="C:\\Users\\dicke\\packages\\MyoSDK.2.1.0")
   hub = myo.Hub()
   listener = Listener()
   while hub.run(listener.on_event, 500):

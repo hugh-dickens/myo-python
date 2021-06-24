@@ -36,6 +36,9 @@ import sys
 class Listener(myo.DeviceListener):
 
   def __init__(self):
+    #### module 'time' has no attribute 'clock' in python 3.9. On error,
+    # go to directory .\lib\site-packages\myo\utils.py and change time.clock() with
+    # time.perf_counter() instead.
     self.interval = TimeInterval(None, 0.05)
     self.orientation = None
     self.pose = myo.Pose.rest
@@ -98,7 +101,10 @@ class Listener(myo.DeviceListener):
 
 
 if __name__ == '__main__':
-  myo.init()
+  ### enter the path to your own MyoSDK package and .dll file here. Download 
+  # with Nuget @ https://www.nuget.org/packages/MyoSDK/2.1.0 and insert .dll file within
+  # /bin folder if required.
+  myo.init(sdk_path="C:\\Users\\dicke\\packages\\MyoSDK.2.1.0")
   hub = myo.Hub()
   listener = Listener()
   while hub.run(listener.on_event, 500):
